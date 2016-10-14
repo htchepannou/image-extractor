@@ -2,7 +2,7 @@ package com.tchepannou.kiosk.image;
 
 import org.jsoup.nodes.Element;
 
-public class ImageInfo {
+class ImageInfo {
     private Element element;
     private Dimension dimension;
 
