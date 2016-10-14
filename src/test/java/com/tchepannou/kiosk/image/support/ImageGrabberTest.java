@@ -1,4 +1,4 @@
-package com.tchepannou.kiosk.image;
+package com.tchepannou.kiosk.image.support;
 
 import org.apache.commons.io.IOUtils;
 import org.eclipse.jetty.server.Handler;

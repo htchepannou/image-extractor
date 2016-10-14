@@ -1,4 +1,4 @@
-package com.tchepannou.kiosk.image;
+package com.tchepannou.kiosk.image.support;
 
 public class ImageData {
     private String contentType;
