@@ -1,0 +1,15 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+script:
+  - mvn clean install
+
+after_success:
+  - wget http://roboconf.net/resources/build/settings.xml
+  - mvn clean deploy -q --settings settings.xml
+
+notifications:
+  email:
+  - herve.tchepannou@gmail.com
