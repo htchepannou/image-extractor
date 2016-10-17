@@ -79,6 +79,14 @@
     </dependencies>
 
     <build>
+        <extensions>
+            <extension>
+                <groupId>org.springframework.build</groupId>
+                <artifactId>aws-maven</artifactId>
+                <version>5.0.0.RELEASE</version>
+            </extension>
+        </extensions>
+
         <plugins>
             <!-- COMPILER -->
             <plugin>
@@ -221,16 +229,16 @@
     </build>
 
     <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-snapshots</id>
-            <name>Sonatype Nexus snapshot repository</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-
         <repository>
-            <id>sonatype-release-staging</id>
-            <name>Sonatype Nexus release repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+            <id>maven-s3-release-repo</id>
+            <name>AWS Release Repository</name>
+            <url>s3://repository.tchepannou/releases</url>
         </repository>
+        <snapshotRepository>
+            <id>maven-s3-snapshot-repo</id>
+            <name>AWS Snapshot Repository</name>
+            <url>s3://repository.tchepannou/snapshots</url>
+        </snapshotRepository>
     </distributionManagement>
+
 </project>
