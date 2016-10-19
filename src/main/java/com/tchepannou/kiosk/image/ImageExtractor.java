@@ -15,8 +15,19 @@ public class ImageExtractor {
         final Document doc = Jsoup.parse(html);
         doc.setBaseUri(context.getBaseUri());
 
-        final String image = selectImage(doc, context);
-        return image == null ? detectImage(doc, context) : image;
+        String image = ogImage(doc);
+        if (image == null) {
+            image = selectImage(doc, context);
+        }
+        if (image == null) {
+            image = detectImage(doc, context);
+        }
+        return image;
+    }
+
+    private String ogImage(final Document doc) {
+        final Elements elts = doc.select("meta[property=og:image]");
+        return elts.isEmpty() ? null : elts.attr("content");
     }
 
     private String selectImage(final Document doc, final ImageContext context) {
@@ -39,7 +50,7 @@ public class ImageExtractor {
                 .map(elt -> toImageInfo(elt, context))
                 .filter(img -> accept(img, context))
                 .collect(Collectors.toList());
-        if (imageInfos.isEmpty()){
+        if (imageInfos.isEmpty()) {
             return null;
         }
 
